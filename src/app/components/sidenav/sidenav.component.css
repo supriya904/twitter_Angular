@@ -1,0 +1,177 @@
+.sidenav-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+/* Logo */
+.logo {
+  padding: 12px 0;
+  margin-bottom: 8px;
+}
+
+.x-logo {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  flex: 1;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 30px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  font-weight: bold;
+}
+
+.material-icons {
+  margin-right: 16px;
+  font-size: 24px;
+}
+
+.nav-text {
+  font-size: 18px;
+}
+
+/* Post Button */
+.post-btn-container {
+  margin: 16px 0;
+}
+
+.post-btn {
+  background-color: #1DA1F2;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 0;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.post-btn:hover {
+  background-color: #1a91da;
+}
+
+/* User Profile */
+.user-profile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 30px;
+  margin-top: auto;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.avatar {
+  margin-right: 12px;
+}
+
+.avatar .material-icons {
+  font-size: 40px;
+  margin-right: 0;
+}
+
+.user-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.user-name {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-handle {
+  color: #8899a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.more-options {
+  margin-left: 8px;
+}
+
+.more-options .material-icons {
+  margin-right: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .nav-text,
+  .user-info,
+  .more-options {
+    display: none;
+  }
+  
+  .material-icons {
+    margin-right: 0;
+  }
+  
+  .nav-item {
+    justify-content: center;
+  }
+  
+  .post-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .post-btn::after {
+    content: '+';
+    font-size: 24px;
+  }
+  
+  .post-btn-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .user-profile {
+    justify-content: center;
+  }
+  
+  .avatar {
+    margin-right: 0;
+  }
+}

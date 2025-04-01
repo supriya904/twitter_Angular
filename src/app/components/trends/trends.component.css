@@ -1,0 +1,159 @@
+.trends-container {
+  background-color: #16181c;
+  border-radius: 16px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.trends-header,
+.follow-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.trends-header h2,
+.follow-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.trends-section,
+.follow-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.trend-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.trend-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.trend-category {
+  font-size: 13px;
+  color: #8899a6;
+  margin-bottom: 2px;
+}
+
+.trend-tag {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.trend-posts {
+  font-size: 13px;
+  color: #8899a6;
+}
+
+.show-more {
+  padding: 16px;
+  border-bottom: 1px solid #2f3336;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.show-more:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.show-more a {
+  color: #1da1f2;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* Who to follow section */
+.follow-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.follow-item:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.follow-avatar {
+  margin-right: 12px;
+}
+
+.follow-avatar .material-icons {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.follow-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.follow-name {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+.verified .material-icons {
+  font-size: 14px;
+  color: #1da1f2;
+  margin-left: 2px;
+}
+
+.follow-handle {
+  color: #8899a6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.follow-button button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.follow-button button:hover {
+  background-color: #e6e6e6;
+}
+
+/* Footer */
+.trends-footer {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #8899a6;
+}
+
+.trends-footer a {
+  color: #8899a6;
+  text-decoration: none;
+  margin-right: 12px;
+  margin-bottom: 4px;
+}
+
+.trends-footer a:hover {
+  text-decoration: underline;
+}
+
+.trends-footer span {
+  margin-top: 4px;
+}

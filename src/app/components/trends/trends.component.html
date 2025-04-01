@@ -1,0 +1,60 @@
+<div class="trends-container">
+  <div class="trends-header">
+    <h2>What's happening</h2>
+  </div>
+  
+  <!-- Trending Topics -->
+  <div class="trends-section">
+    <div class="trend-item" *ngFor="let trend of trendingTopics">
+      <div class="trend-category">{{trend.category}}</div>
+      <div class="trend-tag">{{trend.tag}}</div>
+      <div class="trend-posts">{{trend.posts}}</div>
+    </div>
+  </div>
+  
+  <!-- Show more link -->
+  <div class="show-more">
+    <a href="#">Show more</a>
+  </div>
+  
+  <!-- Who to follow section -->
+  <div class="follow-header">
+    <h2>Who to follow</h2>
+  </div>
+  
+  <div class="follow-section">
+    <div class="follow-item" *ngFor="let account of suggestedAccounts">
+      <div class="follow-avatar">
+        <span class="material-icons">account_circle</span>
+      </div>
+      <div class="follow-info">
+        <div class="follow-name">
+          {{account.name}}
+          <span class="verified" *ngIf="account.verified">
+            <span class="material-icons">verified</span>
+          </span>
+        </div>
+        <div class="follow-handle">{{account.handle}}</div>
+      </div>
+      <div class="follow-button">
+        <button>Follow</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Show more link -->
+  <div class="show-more">
+    <a href="#">Show more</a>
+  </div>
+  
+  <!-- Footer links -->
+  <div class="trends-footer">
+    <a href="#">Terms of Service</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Cookie Policy</a>
+    <a href="#">Accessibility</a>
+    <a href="#">Ads info</a>
+    <a href="#">More...</a>
+    <span>© 2025 X Corp.</span>
+  </div>
+</div>

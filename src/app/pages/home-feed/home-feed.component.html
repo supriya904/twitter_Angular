@@ -1,0 +1,87 @@
+<div class="home-feed-container">
+  <!-- Header -->
+  <div class="feed-header">
+    <h2>Home</h2>
+  </div>
+  
+  <!-- Tweet composer -->
+  <div class="tweet-composer">
+    <div class="composer-avatar">
+      <span class="material-icons">account_circle</span>
+    </div>
+    <div class="composer-input">
+      <div class="input-area" contenteditable="true" placeholder="What's happening?"></div>
+      <div class="composer-actions">
+        <div class="composer-tools">
+          <button class="tool-button">
+            <span class="material-icons">image</span>
+          </button>
+          <button class="tool-button">
+            <span class="material-icons">gif</span>
+          </button>
+          <button class="tool-button">
+            <span class="material-icons">poll</span>
+          </button>
+          <button class="tool-button">
+            <span class="material-icons">emoji_emotions</span>
+          </button>
+          <button class="tool-button">
+            <span class="material-icons">schedule</span>
+          </button>
+          <button class="tool-button">
+            <span class="material-icons">location_on</span>
+          </button>
+        </div>
+        <button class="post-tweet-btn" disabled>Tweet</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tweets feed -->
+  <div class="tweets-container">
+    <div class="tweet" *ngFor="let tweet of tweets">
+      <div class="tweet-avatar">
+        <span class="material-icons">account_circle</span>
+      </div>
+      <div class="tweet-content">
+        <div class="tweet-header">
+          <span class="tweet-name">{{ tweet.user.name }}</span>
+          <span class="verified" *ngIf="tweet.user.verified">
+            <span class="material-icons">verified</span>
+          </span>
+          <span class="tweet-handle">{{ tweet.user.handle }}</span>
+          <span class="tweet-time">· {{ tweet.timestamp }}</span>
+          <div class="tweet-more">
+            <button class="more-button">
+              <span class="material-icons">more_horiz</span>
+            </button>
+          </div>
+        </div>
+        <div class="tweet-text">
+          {{ tweet.content }}
+        </div>
+        <div class="tweet-actions">
+          <button class="action-button">
+            <span class="material-icons">chat_bubble_outline</span>
+            <span class="action-count">{{ tweet.stats.replies }}</span>
+          </button>
+          <button class="action-button">
+            <span class="material-icons">repeat</span>
+            <span class="action-count">{{ tweet.stats.retweets }}</span>
+          </button>
+          <button class="action-button">
+            <span class="material-icons">favorite_border</span>
+            <span class="action-count">{{ tweet.stats.likes }}</span>
+          </button>
+          <button class="action-button">
+            <span class="material-icons">bar_chart</span>
+            <span class="action-count">{{ tweet.stats.views }}</span>
+          </button>
+          <button class="action-button">
+            <span class="material-icons">file_upload</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

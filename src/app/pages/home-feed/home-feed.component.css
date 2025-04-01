@@ -1,0 +1,219 @@
+.home-feed-container {
+  width: 100%;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+}
+
+/* Header */
+.feed-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.65);
+  border-bottom: 1px solid #2f3336;
+  padding: 12px 16px;
+  z-index: 10;
+}
+
+.feed-header h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Tweet composer */
+.tweet-composer {
+  display: flex;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.composer-avatar {
+  margin-right: 12px;
+}
+
+.composer-avatar .material-icons {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.composer-input {
+  flex: 1;
+}
+
+.input-area {
+  min-height: 80px;
+  font-size: 20px;
+  padding: 12px 0;
+  outline: none;
+}
+
+.input-area[placeholder]:empty:before {
+  content: attr(placeholder);
+  color: #71767b;
+  pointer-events: none;
+}
+
+.composer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  border-top: 1px solid #2f3336;
+  padding-top: 12px;
+}
+
+.composer-tools {
+  display: flex;
+}
+
+.tool-button {
+  background: none;
+  border: none;
+  color: #1da1f2;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tool-button:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+}
+
+.post-tweet-btn {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.post-tweet-btn:hover {
+  background-color: #1a91da;
+}
+
+.post-tweet-btn:disabled {
+  background-color: #1a91da80;
+  cursor: not-allowed;
+}
+
+/* Tweets feed */
+.tweets-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet {
+  display: flex;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+  transition: background-color 0.2s;
+}
+
+.tweet:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tweet-avatar {
+  margin-right: 12px;
+}
+
+.tweet-avatar .material-icons {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.tweet-content {
+  flex: 1;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.verified .material-icons {
+  font-size: 16px;
+  color: #1da1f2;
+  margin-right: 4px;
+}
+
+.tweet-handle, .tweet-time {
+  color: #71767b;
+  margin-right: 4px;
+}
+
+.tweet-more {
+  margin-left: auto;
+}
+
+.more-button {
+  background: none;
+  border: none;
+  color: #71767b;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.more-button:hover {
+  background-color: rgba(29, 161, 242, 0.1);
+  color: #1da1f2;
+}
+
+.tweet-text {
+  font-size: 15px;
+  line-height: 1.3125;
+  margin-bottom: 12px;
+  word-wrap: break-word;
+}
+
+.tweet-actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 425px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #71767b;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.action-button .material-icons {
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.action-button:hover {
+  color: #1da1f2;
+}
+
+.action-count {
+  font-size: 13px;
+}

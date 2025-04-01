@@ -1,0 +1,41 @@
+<div class="sidenav-container">
+  <!-- Twitter/X Logo -->
+  <div class="logo">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="x-logo">
+      <g>
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="nav-menu">
+    <ul>
+      <li *ngFor="let item of navItems" (click)="navigateTo(item.route)">
+        <a [class.active]="item.route === '/dashboard'" class="nav-item">
+          <span class="material-icons">{{item.icon}}</span>
+          <span class="nav-text">{{item.label}}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Post Button -->
+  <div class="post-btn-container">
+    <button class="post-btn">Post</button>
+  </div>
+
+  <!-- User Profile -->
+  <div class="user-profile">
+    <div class="avatar">
+      <span class="material-icons">account_circle</span>
+    </div>
+    <div class="user-info">
+      <div class="user-name">{{user.name}}</div>
+      <div class="user-handle">{{user.handle}}</div>
+    </div>
+    <div class="more-options">
+      <span class="material-icons">more_horiz</span>
+    </div>
+  </div>
+</div>
