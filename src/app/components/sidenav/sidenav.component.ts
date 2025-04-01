@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { TweetDialogComponent } from '../tweet-dialog/tweet-dialog.component';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TweetDialogComponent],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
@@ -26,9 +27,19 @@ export class SidenavComponent {
     { icon: 'fa-ellipsis-h', label: 'More', route: '/dashboard/more' }
   ];
 
+  showTweetDialog = false;
+
   constructor(private router: Router) {}
 
   navigateTo(route: string): void {
     this.router.navigate([route]);
+  }
+
+  openTweetDialog(): void {
+    this.showTweetDialog = true;
+  }
+
+  closeTweetDialog(): void {
+    this.showTweetDialog = false;
   }
 }

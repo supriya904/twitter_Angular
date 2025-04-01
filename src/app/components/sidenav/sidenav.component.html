@@ -22,7 +22,7 @@
 
   <!-- Post Button -->
   <div class="post-btn-container">
-    <button class="post-btn">Post</button>
+    <button class="post-btn" (click)="openTweetDialog()">Post</button>
   </div>
 
   <!-- User Profile -->
@@ -38,4 +38,7 @@
       <i class="fas fa-ellipsis-h"></i>
     </div>
   </div>
+
+  <!-- Tweet Dialog -->
+  <app-tweet-dialog *ngIf="showTweetDialog" (closeEvent)="closeTweetDialog()"></app-tweet-dialog>
 </div>

@@ -1,0 +1,68 @@
+<div class="tweet-dialog-overlay" (click)="closeDialog($event)">
+  <div class="tweet-dialog" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <button class="close-btn" (click)="close()">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="drafts-btn">
+        <span>Drafts</span>
+      </div>
+    </div>
+    
+    <div class="dialog-content">
+      <div class="user-avatar">
+        <div class="avatar-circle">
+          <span class="avatar-initial">{{ currentUser?.name?.charAt(0) || 'S' }}</span>
+        </div>
+      </div>
+      
+      <div class="tweet-compose">
+        <div class="audience-selector">
+          <span class="audience-label">Everyone can reply</span>
+        </div>
+        
+        <div 
+          class="tweet-input" 
+          contenteditable="true" 
+          placeholder="What's happening?"
+          (input)="onContentChange($event)"
+          #tweetContent
+        ></div>
+      </div>
+    </div>
+    
+    <div class="dialog-footer">
+      <div class="tweet-actions">
+        <div class="tweet-tools">
+          <button class="tool-btn">
+            <i class="fas fa-image"></i>
+          </button>
+          <button class="tool-btn">
+            <i class="fas fa-gift"></i>
+          </button>
+          <button class="tool-btn">
+            <i class="fas fa-poll"></i>
+          </button>
+          <button class="tool-btn">
+            <i class="fas fa-smile"></i>
+          </button>
+          <button class="tool-btn">
+            <i class="fas fa-calendar"></i>
+          </button>
+          <button class="tool-btn">
+            <i class="fas fa-map-marker-alt"></i>
+          </button>
+        </div>
+        
+        <button 
+          class="post-btn" 
+          style="background-color: #1DA1F2; color: white; padding: 10px 20px; border: none; border-radius: 20px; font-weight: bold; min-width: 80px;"
+          [disabled]="!tweetContent.textContent?.trim()"
+          (click)="postTweet()"
+        >
+          Post
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
