@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 
 export interface User {
   id?: string;
   name: string;
   email: string;
+  password?: string;
   dateOfBirth: string;
   createdAt: string;
 }
@@ -29,12 +30,16 @@ export class AuthService {
 
   // Register a new user
   register(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/users.json`, user)
+    // Create a copy of user without the password for storage
+    const userToStore = { ...user };
+    delete userToStore.password;
+
+    return this.http.post<any>(`${this.apiUrl}/users.json`, userToStore)
       .pipe(
         tap(response => {
           // Firebase returns an object with a name property which is the unique ID
           const newUser = {
-            ...user,
+            ...userToStore,
             id: response.name
           };
           this.setCurrentUser(newUser);
@@ -47,23 +52,28 @@ export class AuthService {
       );
   }
 
-  // Login user by email
-  login(email: string): Observable<any> {
-    // Firebase doesn't have a direct query by email, so we need to fetch all users
-    // and filter on the client side
+  // Login user by email and password
+  login(email: string, password: string): Observable<User> {
+    // Get all users and find the one with matching email and password
     return this.http.get<any>(`${this.apiUrl}/users.json`)
       .pipe(
-        tap(users => {
+        map(users => {
           if (!users) {
             throw new Error('User not found');
           }
-          
+
           // Find user with matching email
-          const userId = Object.keys(users).find(key => users[key].email === email);
-          
+          const userId = Object.keys(users).find(key => 
+            users[key].email === email
+          );
+
           if (!userId) {
             throw new Error('User not found');
           }
+
+          // In a real app, you would hash passwords and not store them directly
+          // For this demo, we're checking if the user exists with the given email
+          // In a production app, you'd use Firebase Authentication instead
           
           const user = {
             ...users[userId],

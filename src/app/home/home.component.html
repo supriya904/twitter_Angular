@@ -31,7 +31,7 @@
       
       <div class="signin-section">
         <p>Already have an account?</p>
-        <button class="signin-btn" (click)="login()">Sign in</button>
+        <button class="signin-btn" (click)="toggleLoginForm()">Sign in</button>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
           <span>or</span>
         </div>
         
-        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
           <div class="form-group">
             <input type="text" placeholder="Name" formControlName="name" required>
             <div class="error-message" *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.errors?.['required']">
@@ -72,6 +72,26 @@
             </div>
             <div class="error-message" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['email']">
               Please enter a valid email
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="password" placeholder="Password" formControlName="password" required>
+            <div class="error-message" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']">
+              Password is required
+            </div>
+            <div class="error-message" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['minlength']">
+              Password must be at least 6 characters
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
+            <div class="error-message" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.errors?.['required']">
+              Please confirm your password
+            </div>
+            <div class="error-message" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.errors?.['passwordMismatch']">
+              Passwords do not match
             </div>
           </div>
           
@@ -110,6 +130,68 @@
             <span *ngIf="isLoading">Loading...</span>
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Login Form Popup -->
+  <div class="signup-overlay" *ngIf="showLoginForm">
+    <div class="signup-form">
+      <div class="form-header">
+        <button class="close-btn" (click)="toggleLoginForm()">&times;</button>
+        <h2>Sign in to X</h2>
+      </div>
+      
+      <div class="form-content">
+        <button class="apple-signup-btn">
+          <img src="assets/apple-logo.svg" alt="Apple logo" class="apple-logo">
+          Sign in with Apple
+        </button>
+        
+        <button class="google-signup-btn">
+          <img src="assets/google-logo.svg" alt="Google logo" class="google-logo">
+          Sign in with Google
+        </button>
+        
+        <div class="divider">
+          <span>or</span>
+        </div>
+        
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+          <div class="form-group">
+            <input type="email" placeholder="Email" formControlName="email" required>
+            <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+              Email is required
+            </div>
+            <div class="error-message" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+              Please enter a valid email
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="password" placeholder="Password" formControlName="password" required>
+            <div class="error-message" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+              Password is required
+            </div>
+          </div>
+          
+          <div class="error-message" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          
+          <button type="submit" class="next-btn" [disabled]="isLoading">
+            <span *ngIf="!isLoading">Log in</span>
+            <span *ngIf="isLoading">Loading...</span>
+          </button>
+        </form>
+        
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+        
+        <div class="signup-link">
+          <p>Don't have an account? <a href="#" (click)="toggleLoginForm(); toggleSignupForm(); $event.preventDefault()">Sign up</a></p>
+        </div>
       </div>
     </div>
   </div>

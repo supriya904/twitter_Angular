@@ -13,7 +13,9 @@ import { AuthService, User } from '../services/auth.service';
 })
 export class HomeComponent {
   showSignupForm = false;
+  showLoginForm = false;
   signupForm: FormGroup;
+  loginForm: FormGroup;
   isLoading = false;
   errorMessage = '';
   months = [
@@ -31,21 +33,51 @@ export class HomeComponent {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required],
       month: ['', Validators.required],
       day: ['', Validators.required],
       year: ['', Validators.required]
+    }, { validators: this.passwordMatchValidator });
+
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
+  }
+
+  // Custom validator to check if passwords match
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    
+    if (password !== confirmPassword) {
+      form.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    }
+    
+    return null;
   }
 
   toggleSignupForm() {
     this.showSignupForm = !this.showSignupForm;
+    this.showLoginForm = false;
     if (!this.showSignupForm) {
       this.signupForm.reset();
       this.errorMessage = '';
     }
   }
 
-  onSubmit() {
+  toggleLoginForm() {
+    this.showLoginForm = !this.showLoginForm;
+    this.showSignupForm = false;
+    if (!this.showLoginForm) {
+      this.loginForm.reset();
+      this.errorMessage = '';
+    }
+  }
+
+  onSubmitSignup() {
     if (this.signupForm.invalid) {
       // Mark all fields as touched to trigger validation errors
       Object.keys(this.signupForm.controls).forEach(key => {
@@ -58,12 +90,13 @@ export class HomeComponent {
     this.isLoading = true;
     this.errorMessage = '';
 
-    const { name, email, month, day, year } = this.signupForm.value;
+    const { name, email, password, month, day, year } = this.signupForm.value;
     const dateOfBirth = `${year}-${month}-${day}`;
 
     const user: User = {
       name,
       email,
+      password,
       dateOfBirth,
       createdAt: new Date().toISOString()
     };
@@ -73,8 +106,8 @@ export class HomeComponent {
         console.log('User registered successfully:', response);
         this.isLoading = false;
         this.toggleSignupForm();
-        // Navigate to dashboard or home page after successful registration
-        // this.router.navigate(['/dashboard']);
+        // Navigate to dashboard after successful registration
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('Registration error:', error);
@@ -84,20 +117,26 @@ export class HomeComponent {
     });
   }
 
-  login() {
-    // For demo purposes, we'll just use a simple login with email
-    const email = prompt('Enter your email to login:');
-    if (!email) return;
+  onSubmitLogin() {
+    if (this.loginForm.invalid) {
+      Object.keys(this.loginForm.controls).forEach(key => {
+        const control = this.loginForm.get(key);
+        control?.markAsTouched();
+      });
+      return;
+    }
 
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.authService.login(email).subscribe({
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email, password).subscribe({
       next: (user) => {
         console.log('User logged in successfully:', user);
         this.isLoading = false;
-        // Navigate to dashboard or home page after successful login
-        // this.router.navigate(['/dashboard']);
+        // Navigate to dashboard after successful login
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('Login error:', error);
