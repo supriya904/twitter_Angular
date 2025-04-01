@@ -9,10 +9,10 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', loadComponent: () => import('./pages/home-feed/home-feed.component').then(m => m.HomeFeedComponent) },
+      { path: 'profile', loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent) },
       { path: 'explore', redirectTo: 'home' },
       { path: 'notifications', redirectTo: 'home' },
-      { path: 'messages', redirectTo: 'home' },
-      { path: 'profile', redirectTo: 'home' }
+      { path: 'messages', redirectTo: 'home' }
     ] 
   },
   { path: '**', redirectTo: '' }

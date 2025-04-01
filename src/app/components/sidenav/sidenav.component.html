@@ -13,7 +13,7 @@
     <ul>
       <li *ngFor="let item of navItems" (click)="navigateTo(item.route)">
         <a [class.active]="item.route === '/dashboard'" class="nav-item">
-          <span class="material-icons">{{item.icon}}</span>
+          <i class="fas {{item.icon}}"></i>
           <span class="nav-text">{{item.label}}</span>
         </a>
       </li>
@@ -28,14 +28,14 @@
   <!-- User Profile -->
   <div class="user-profile">
     <div class="avatar">
-      <span class="material-icons">account_circle</span>
+      <i class="fas fa-user-circle"></i>
     </div>
     <div class="user-info">
       <div class="user-name">{{user.name}}</div>
       <div class="user-handle">{{user.handle}}</div>
     </div>
     <div class="more-options">
-      <span class="material-icons">more_horiz</span>
+      <i class="fas fa-ellipsis-h"></i>
     </div>
   </div>
 </div>

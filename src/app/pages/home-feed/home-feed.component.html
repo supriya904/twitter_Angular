@@ -1,38 +1,41 @@
 <div class="home-feed-container">
-  <!-- Header -->
+  <!-- Header with tabs -->
   <div class="feed-header">
-    <h2>Home</h2>
+    <div class="tab-container">
+      <div class="tab active">For you</div>
+      <div class="tab">Following</div>
+    </div>
   </div>
   
   <!-- Tweet composer -->
   <div class="tweet-composer">
     <div class="composer-avatar">
-      <span class="material-icons">account_circle</span>
+      <i class="fas fa-user-circle"></i>
     </div>
     <div class="composer-input">
       <div class="input-area" contenteditable="true" placeholder="What's happening?"></div>
       <div class="composer-actions">
         <div class="composer-tools">
           <button class="tool-button">
-            <span class="material-icons">image</span>
+            <i class="fas fa-image"></i>
           </button>
           <button class="tool-button">
-            <span class="material-icons">gif</span>
+            <i class="fas fa-gift"></i>
           </button>
           <button class="tool-button">
-            <span class="material-icons">poll</span>
+            <i class="fas fa-poll"></i>
           </button>
           <button class="tool-button">
-            <span class="material-icons">emoji_emotions</span>
+            <i class="fas fa-smile"></i>
           </button>
           <button class="tool-button">
-            <span class="material-icons">schedule</span>
+            <i class="fas fa-calendar"></i>
           </button>
           <button class="tool-button">
-            <span class="material-icons">location_on</span>
+            <i class="fas fa-map-marker-alt"></i>
           </button>
         </div>
-        <button class="post-tweet-btn" disabled>Tweet</button>
+        <button class="post-tweet-btn" disabled>Post</button>
       </div>
     </div>
   </div>
@@ -41,19 +44,19 @@
   <div class="tweets-container">
     <div class="tweet" *ngFor="let tweet of tweets">
       <div class="tweet-avatar">
-        <span class="material-icons">account_circle</span>
+        <i class="fas fa-user-circle"></i>
       </div>
       <div class="tweet-content">
         <div class="tweet-header">
           <span class="tweet-name">{{ tweet.user.name }}</span>
           <span class="verified" *ngIf="tweet.user.verified">
-            <span class="material-icons">verified</span>
+            <i class="fas fa-check-circle"></i>
           </span>
           <span class="tweet-handle">{{ tweet.user.handle }}</span>
           <span class="tweet-time">· {{ tweet.timestamp }}</span>
           <div class="tweet-more">
             <button class="more-button">
-              <span class="material-icons">more_horiz</span>
+              <i class="fas fa-ellipsis-h"></i>
             </button>
           </div>
         </div>
@@ -62,23 +65,23 @@
         </div>
         <div class="tweet-actions">
           <button class="action-button">
-            <span class="material-icons">chat_bubble_outline</span>
+            <i class="far fa-comment"></i>
             <span class="action-count">{{ tweet.stats.replies }}</span>
           </button>
           <button class="action-button">
-            <span class="material-icons">repeat</span>
+            <i class="fas fa-retweet"></i>
             <span class="action-count">{{ tweet.stats.retweets }}</span>
           </button>
           <button class="action-button">
-            <span class="material-icons">favorite_border</span>
+            <i class="far fa-heart"></i>
             <span class="action-count">{{ tweet.stats.likes }}</span>
           </button>
           <button class="action-button">
-            <span class="material-icons">bar_chart</span>
+            <i class="fas fa-chart-bar"></i>
             <span class="action-count">{{ tweet.stats.views }}</span>
           </button>
           <button class="action-button">
-            <span class="material-icons">file_upload</span>
+            <i class="fas fa-upload"></i>
           </button>
         </div>
       </div>

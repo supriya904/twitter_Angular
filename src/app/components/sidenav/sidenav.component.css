@@ -48,9 +48,11 @@
   font-weight: bold;
 }
 
-.material-icons {
+.fas {
   margin-right: 16px;
-  font-size: 24px;
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
 }
 
 .nav-text {
@@ -99,7 +101,7 @@
   margin-right: 12px;
 }
 
-.avatar .material-icons {
+.avatar .fas {
   font-size: 40px;
   margin-right: 0;
 }
@@ -127,7 +129,7 @@
   margin-left: 8px;
 }
 
-.more-options .material-icons {
+.more-options .fas {
   margin-right: 0;
 }
 
@@ -139,7 +141,7 @@
     display: none;
   }
   
-  .material-icons {
+  .fas {
     margin-right: 0;
   }
   

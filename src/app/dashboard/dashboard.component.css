@@ -5,19 +5,24 @@
   width: 100%;
   background-color: #000;
   color: white;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 /* Left sidebar */
 .sidebar-left {
   width: 275px;
-  border-right: 1px solid #2f3336;
   padding: 0 12px;
   overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 /* Main content area */
 .main-content {
   flex: 1;
+  border-left: 1px solid #2f3336;
   border-right: 1px solid #2f3336;
   max-width: 600px;
   overflow-y: auto;
@@ -28,6 +33,9 @@
   width: 350px;
   padding: 0 16px;
   overflow-y: auto;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
 /* Responsive adjustments */

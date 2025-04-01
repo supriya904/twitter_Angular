@@ -16,14 +16,14 @@ export class SidenavComponent {
   };
   
   navItems = [
-    { icon: 'home', label: 'Home', route: '/dashboard' },
-    { icon: 'search', label: 'Explore', route: '/explore' },
-    { icon: 'notifications', label: 'Notifications', route: '/notifications' },
-    { icon: 'mail', label: 'Messages', route: '/messages' },
-    { icon: 'bookmark', label: 'Bookmarks', route: '/bookmarks' },
-    { icon: 'list_alt', label: 'Lists', route: '/lists' },
-    { icon: 'person', label: 'Profile', route: '/profile' },
-    { icon: 'more_horiz', label: 'More', route: '/more' }
+    { icon: 'fa-home', label: 'Home', route: '/dashboard/home' },
+    { icon: 'fa-search', label: 'Explore', route: '/dashboard/explore' },
+    { icon: 'fa-bell', label: 'Notifications', route: '/dashboard/notifications' },
+    { icon: 'fa-envelope', label: 'Messages', route: '/dashboard/messages' },
+    { icon: 'fa-bookmark', label: 'Bookmarks', route: '/dashboard/bookmarks' },
+    { icon: 'fa-list-alt', label: 'Lists', route: '/dashboard/lists' },
+    { icon: 'fa-user', label: 'Profile', route: '/dashboard/profile' },
+    { icon: 'fa-ellipsis-h', label: 'More', route: '/dashboard/more' }
   ];
 
   constructor(private router: Router) {}

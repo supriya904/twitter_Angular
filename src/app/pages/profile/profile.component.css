@@ -1,0 +1,366 @@
+/* Profile container */
+.profile-container {
+  width: 100%;
+  color: white;
+}
+
+/* Header with back button */
+.profile-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  border-bottom: 1px solid #2f3336;
+}
+
+.back-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-count {
+  font-size: 13px;
+  color: #8899a6;
+}
+
+/* Profile banner */
+.profile-banner {
+  height: 200px;
+  background-color: #333;
+  position: relative;
+}
+
+/* Profile info section */
+.profile-info-section {
+  padding: 0 16px;
+  position: relative;
+}
+
+/* Profile picture */
+.profile-picture-container {
+  position: absolute;
+  top: -75px;
+  left: 16px;
+}
+
+.profile-picture {
+  width: 134px;
+  height: 134px;
+  border-radius: 50%;
+  background-color: #00a884;
+  border: 4px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-initial {
+  font-size: 72px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Edit profile button */
+.edit-profile-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
+.edit-profile-btn {
+  background-color: transparent;
+  color: white;
+  border: 1px solid #8899a6;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-profile-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile details */
+.profile-details {
+  margin-top: 60px;
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+}
+
+.profile-handle {
+  display: block;
+  font-size: 15px;
+  color: #8899a6;
+  margin-bottom: 12px;
+}
+
+.joined-date {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #8899a6;
+  margin-bottom: 12px;
+}
+
+.joined-date i {
+  margin-right: 4px;
+}
+
+/* Follow stats */
+.follow-stats {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.following, .followers {
+  display: flex;
+  margin-right: 20px;
+}
+
+.count {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.label {
+  color: #8899a6;
+}
+
+/* Verification banner */
+.verification-banner {
+  background-color: #00553d;
+  border-radius: 16px;
+  margin: 16px 0;
+  padding: 16px;
+}
+
+.verification-content {
+  display: flex;
+  position: relative;
+}
+
+.verification-icon {
+  margin-right: 12px;
+}
+
+.verification-icon i {
+  font-size: 24px;
+  color: white;
+}
+
+.verification-text h3 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+}
+
+.verification-text p {
+  margin: 0 0 16px 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.get-verified-btn {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+/* Profile tabs */
+.profile-tabs {
+  display: flex;
+  border-bottom: 1px solid #2f3336;
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.tab {
+  flex: 1;
+  min-width: 80px;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #8899a6;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: white;
+}
+
+.tab.active {
+  color: white;
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 4px;
+  background-color: #1da1f2;
+  border-radius: 4px;
+}
+
+/* Posts section */
+.posts-section {
+  border-bottom: 1px solid #2f3336;
+}
+
+.tweet {
+  display: flex;
+  padding: 12px 16px;
+  border-bottom: 1px solid #2f3336;
+  transition: background-color 0.2s;
+}
+
+.tweet:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tweet-avatar {
+  margin-right: 12px;
+}
+
+.avatar-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #00a884;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tweet-content {
+  flex: 1;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.tweet-name {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.tweet-handle, .tweet-time {
+  color: #8899a6;
+  margin-right: 4px;
+}
+
+.tweet-more {
+  margin-left: auto;
+}
+
+.more-button {
+  background: none;
+  border: none;
+  color: #8899a6;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tweet-text {
+  font-size: 15px;
+  line-height: 1.3125;
+  margin-bottom: 12px;
+  word-wrap: break-word;
+}
+
+.tweet-actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 425px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #8899a6;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.action-button:hover {
+  color: #1da1f2;
+}
+
+.action-count {
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile-initial {
+    font-size: 40px;
+  }
+  
+  .profile-picture-container {
+    top: -40px;
+  }
+  
+  .profile-details {
+    margin-top: 40px;
+  }
+}
