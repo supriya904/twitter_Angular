@@ -1,0 +1,112 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="header-top">
+      <button class="back-btn" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="user-info">
+        <h2 class="user-name">{{ user?.name }}</h2>
+        <span class="post-count">{{ userTweets.length }} posts</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-banner"></div>
+
+  <div class="profile-details">
+    <div class="profile-avatar">
+      <div class="avatar-circle">
+        <span class="avatar-initial">V</span>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <button class="edit-profile-btn" (click)="editProfile()">Edit profile</button>
+    </div>
+
+    <div class="user-details">
+      <h2 class="user-name">Vodnala Supriya</h2>
+      <span class="user-handle">@SupriyaVod49428</span>
+
+      <div class="join-date">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Joined {{ joinedDate }}</span>
+      </div>
+
+      <div class="follow-info">
+        <span class="following"><strong>2</strong> Following</span>
+        <span class="followers"><strong>0</strong> Followers</span>
+      </div>
+    </div>
+
+    <div class="profile-tabs">
+      <div class="tab" [class.active]="activeTab === 'posts'" (click)="changeTab('posts')">
+        Posts
+      </div>
+      <div class="tab" [class.active]="activeTab === 'replies'" (click)="changeTab('replies')">
+        Replies
+      </div>
+      <div class="tab" [class.active]="activeTab === 'highlights'" (click)="changeTab('highlights')">
+        Highlights
+      </div>
+      <div class="tab" [class.active]="activeTab === 'media'" (click)="changeTab('media')">
+        Media
+      </div>
+      <div class="tab" [class.active]="activeTab === 'likes'" (click)="changeTab('likes')">
+        Likes
+      </div>
+    </div>
+  </div>
+
+  <div class="tweets-section">
+    <div *ngIf="isLoading" class="loading">
+      <i class="fas fa-spinner fa-spin"></i> Loading tweets...
+    </div>
+
+    <div *ngIf="!isLoading && userTweets.length === 0" class="no-tweets">
+      <p>No tweets yet!</p>
+    </div>
+
+    <div *ngIf="!isLoading && userTweets.length > 0" class="tweets-list">
+      <div *ngFor="let tweet of userTweets" class="tweet">
+        <div class="tweet-avatar">
+          <div class="avatar-circle small">
+            <span class="avatar-initial">V</span>
+          </div>
+        </div>
+        <div class="tweet-content">
+          <div class="tweet-header">
+            <span class="tweet-name">{{ tweet.userName }}</span>
+            <span class="tweet-handle">@{{ tweet.userHandle }}</span>
+            <span class="tweet-time">· {{ formatTweetTime(tweet.timestamp) }}</span>
+            <button class="tweet-more">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+          </div>
+          <div class="tweet-text">{{ tweet.content }}</div>
+          <div class="tweet-actions">
+            <button class="tweet-action">
+              <i class="far fa-comment"></i>
+              <span *ngIf="tweet.replies > 0">{{ tweet.replies }}</span>
+            </button>
+            <button class="tweet-action">
+              <i class="fas fa-retweet"></i>
+              <span *ngIf="tweet.retweets > 0">{{ tweet.retweets }}</span>
+            </button>
+            <button class="tweet-action" (click)="likeTweet(tweet.id || '')">
+              <i class="far" [ngClass]="{'fa-heart': true, 'liked': tweet.likes > 0}"></i>
+              <span *ngIf="tweet.likes > 0">{{ tweet.likes }}</span>
+            </button>
+            <button class="tweet-action">
+              <i class="far fa-chart-bar"></i>
+              <span *ngIf="tweet.views > 0">{{ tweet.views }}</span>
+            </button>
+            <button class="tweet-action">
+              <i class="fas fa-share-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

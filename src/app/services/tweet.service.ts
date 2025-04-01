@@ -108,6 +108,15 @@ export class TweetService {
     );
   }
 
+  // Get tweets for the current user
+  getCurrentUserTweets(): Observable<Tweet[]> {
+    if (!this.currentUser || !this.currentUser.id) {
+      return new Observable<Tweet[]>(observer => observer.next([]));
+    }
+    
+    return this.getTweetsByUser(this.currentUser.id);
+  }
+
   // Like a tweet
   likeTweet(tweetId: string): Observable<any> {
     // Get the current tweet
@@ -134,5 +143,49 @@ export class TweetService {
           throw new Error('Failed to like tweet. Please try again.');
         })
       );
+  }
+
+  // Format tweet timestamp to relative time (e.g., "2h", "Mar 19")
+  formatTweetTime(timestamp: string): string {
+    const tweetDate = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now.getTime() - tweetDate.getTime();
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    // If less than a minute, show "now"
+    if (diffSecs < 60) {
+      return 'now';
+    }
+    
+    // If less than an hour, show minutes
+    if (diffMins < 60) {
+      return `${diffMins}m`;
+    }
+    
+    // If less than a day, show hours
+    if (diffHours < 24) {
+      return `${diffHours}h`;
+    }
+    
+    // If less than a week, show days
+    if (diffDays < 7) {
+      return `${diffDays}d`;
+    }
+    
+    // Otherwise, show the date in "MMM D" format
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[tweetDate.getMonth()];
+    const day = tweetDate.getDate();
+    
+    // If it's from this year, show "MMM D"
+    if (tweetDate.getFullYear() === now.getFullYear()) {
+      return `${month} ${day}`;
+    }
+    
+    // If it's from a different year, show "MMM D, YYYY"
+    return `${month} ${day}, ${tweetDate.getFullYear()}`;
   }
 }
