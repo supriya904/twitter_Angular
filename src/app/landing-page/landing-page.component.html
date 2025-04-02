@@ -1,0 +1,165 @@
+<div class="landing-container">
+  <div class="content">
+    <div class="left-side">
+      <div class="logo">𝕏</div>
+    </div>
+    <div class="right-side">
+      <h1>Happening now</h1>
+      <h2>Join today.</h2>
+      
+      <div class="signup-options">
+        <button class="google-signup-btn">
+          <img src="assets/google-logo.png" alt="Google" class="google-logo">
+          Sign up with Google
+        </button>
+        <button class="apple-signup-btn">
+          <img src="assets/apple-logo.png" alt="Apple" class="apple-logo">
+          Sign up with Apple
+        </button>
+        
+        <div class="divider">
+          <span>or</span>
+        </div>
+        
+        <button class="create-account-btn" (click)="toggleSignupForm()">
+          Create account
+        </button>
+        
+        <p class="terms-text">
+          By signing up, you agree to the <a href="#">Terms of Service</a> and
+          <a href="#">Privacy Policy</a>, including <a href="#">Cookie Use</a>.
+        </p>
+      </div>
+      
+      <div class="signin-section">
+        <p>Already have an account?</p>
+        <button class="signin-btn" (click)="toggleLoginForm()">
+          Sign in
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Signup Form Popup -->
+  <div class="signup-overlay" *ngIf="showSignupForm">
+    <div class="signup-form">
+      <div class="form-header">
+        <button class="close-btn" (click)="toggleSignupForm()">×</button>
+        <h2>Create your account</h2>
+      </div>
+      <div class="form-content">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name">
+            <div class="error-message" *ngIf="signupForm.get('name')?.invalid && signupForm.get('name')?.touched">
+              Name is required (minimum 2 characters)
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email">
+            <div class="error-message" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+              Please enter a valid email address
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password">
+            <div class="error-message" *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+              Password must be at least 6 characters
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword">
+            <div class="error-message" *ngIf="signupForm.get('confirmPassword')?.errors?.['passwordMismatch'] && signupForm.get('confirmPassword')?.touched">
+              Passwords do not match
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <div class="date-inputs">
+              <div class="month-select">
+                <select formControlName="month">
+                  <option value="">Month</option>
+                  <option *ngFor="let month of months; let i = index" [value]="i+1">{{ month }}</option>
+                </select>
+              </div>
+              <div class="day-select">
+                <select formControlName="day">
+                  <option value="">Day</option>
+                  <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+                </select>
+              </div>
+              <div class="year-select">
+                <select formControlName="year">
+                  <option value="">Year</option>
+                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="error-message" *ngIf="(signupForm.get('month')?.invalid && signupForm.get('month')?.touched) || 
+                                             (signupForm.get('day')?.invalid && signupForm.get('day')?.touched) || 
+                                             (signupForm.get('year')?.invalid && signupForm.get('year')?.touched)">
+              Please select a valid date of birth
+            </div>
+          </div>
+          
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          
+          <button type="submit" class="next-btn" [disabled]="signupForm.invalid || isLoading">
+            {{ isLoading ? 'Creating account...' : 'Sign up' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Login Form Popup -->
+  <div class="signup-overlay" *ngIf="showLoginForm">
+    <div class="signup-form">
+      <div class="form-header">
+        <button class="close-btn" (click)="toggleLoginForm()">×</button>
+        <h2>Sign in to X</h2>
+      </div>
+      <div class="form-content">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" formControlName="email">
+            <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Please enter a valid email address
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" formControlName="password">
+            <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Password is required
+            </div>
+          </div>
+          
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          
+          <button type="submit" class="next-btn" [disabled]="loginForm.invalid || isLoading">
+            {{ isLoading ? 'Signing in...' : 'Sign in' }}
+          </button>
+        </form>
+        
+        <div class="forgot-password">
+          <a href="#">Forgot password?</a>
+        </div>
+        
+        <div class="signup-link">
+          Don't have an account? <a href="#" (click)="toggleLoginForm(); toggleSignupForm()">Sign up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

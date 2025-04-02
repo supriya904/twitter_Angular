@@ -1,1 +1,11 @@
 <router-outlet></router-outlet>
+<!-- Landing page -->
+<ng-container *ngIf="!isLoggedIn">
+  <!-- Show landing page when user is not logged in -->
+  <app-landing-page></app-landing-page>
+</ng-container>
+
+<ng-container *ngIf="isLoggedIn">
+  <!-- Show dashboard when user is logged in -->
+  <app-dashboard></app-dashboard>
+</ng-container>
