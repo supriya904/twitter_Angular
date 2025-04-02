@@ -15,6 +15,7 @@ export interface Tweet {
   retweets: number;
   replies: number;
   views: number;
+  imageUrl?: string;
 }
 
 @Injectable({

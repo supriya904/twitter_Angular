@@ -50,6 +50,14 @@
   height: 200px;
   background-color: #333;
   position: relative;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 /* Profile Details */
@@ -69,10 +77,19 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-color: #00ba7c;
+  background-color: #1DA1F2;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 4px solid #000;
+}
+
+.avatar-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
   border: 4px solid #000;
 }
 
@@ -80,6 +97,7 @@
   font-size: 60px;
   font-weight: bold;
   color: white;
+  text-transform: uppercase;
 }
 
 .profile-actions {
@@ -122,16 +140,37 @@
   font-size: 15px;
 }
 
-.join-date {
+.user-bio {
+  margin-bottom: 12px;
+  line-height: 1.4;
+  white-space: pre-line;
+}
+
+.user-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.metadata-item {
   display: flex;
   align-items: center;
   color: #8899a6;
-  margin-bottom: 12px;
   font-size: 15px;
 }
 
-.join-date i {
-  margin-right: 8px;
+.metadata-item i {
+  margin-right: 4px;
+}
+
+.metadata-item a {
+  color: #1DA1F2;
+  text-decoration: none;
+}
+
+.metadata-item a:hover {
+  text-decoration: underline;
 }
 
 .follow-info {
@@ -196,6 +235,45 @@
   color: #8899a6;
 }
 
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #8899a6;
+}
+
+.empty-state h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.empty-state p {
+  color: #8899a6;
+  margin-bottom: 24px;
+}
+
+.compose-btn {
+  background-color: #1DA1F2;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.compose-btn:hover {
+  background-color: #1a91da;
+}
+
 .tweets-list {
   display: flex;
   flex-direction: column;
@@ -209,6 +287,21 @@
 
 .tweet-avatar {
   margin-right: 12px;
+}
+
+.avatar-circle.small {
+  width: 48px;
+  height: 48px;
+}
+
+.avatar-image.small {
+  width: 48px;
+  height: 48px;
+  border-width: 2px;
+}
+
+.avatar-circle.small .avatar-initial {
+  font-size: 24px;
 }
 
 .tweet-content {
@@ -228,6 +321,7 @@
 
 .tweet-handle, .tweet-time {
   color: #8899a6;
+  font-size: 14px;
   margin-right: 4px;
 }
 
@@ -235,21 +329,36 @@
   background: none;
   border: none;
   color: #8899a6;
-  margin-left: auto;
   cursor: pointer;
+  margin-left: auto;
   padding: 4px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tweet-more:hover {
   background-color: rgba(29, 161, 242, 0.1);
-  color: #1da1f2;
+  color: #1DA1F2;
 }
 
 .tweet-text {
   margin-bottom: 12px;
   line-height: 1.4;
-  word-break: break-word;
+  word-wrap: break-word;
+}
+
+.tweet-image {
+  margin-bottom: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.tweet-image img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
 }
 
 .tweet-actions {
@@ -264,22 +373,41 @@
   color: #8899a6;
   display: flex;
   align-items: center;
-  gap: 4px;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
 }
 
+.tweet-action i {
+  margin-right: 4px;
+}
+
 .tweet-action:hover {
-  color: #1da1f2;
+  color: #1DA1F2;
 }
 
-.tweet-action i.liked {
+.tweet-action:hover i.fa-comment {
+  color: #1DA1F2;
+}
+
+.tweet-action:hover i.fa-retweet {
+  color: #00ba7c;
+}
+
+.tweet-action:hover i.fa-heart {
   color: #e0245e;
 }
 
-.tweet-action:hover i.liked {
-  color: #e0245e;
+.tweet-action:hover i.fa-chart-bar {
+  color: #1DA1F2;
+}
+
+.tweet-action:hover i.fa-share-alt {
+  color: #1DA1F2;
+}
+
+.liked {
+  color: #e0245e !important;
 }
 
 /* Responsive adjustments */
@@ -288,7 +416,7 @@
     height: 150px;
   }
   
-  .avatar-circle {
+  .avatar-circle, .avatar-image {
     width: 80px;
     height: 80px;
   }
@@ -302,6 +430,11 @@
   }
   
   .user-details {
-    margin-top: 40px;
+    margin-top: 50px;
+  }
+  
+  .user-metadata {
+    flex-direction: column;
+    gap: 8px;
   }
 }
