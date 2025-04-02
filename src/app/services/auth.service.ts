@@ -23,7 +23,8 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://twitterangular-4b448-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  private apiUrl = 'https://angulartest-93e44-default-rtdb.asia-southeast1.firebasedatabase.app/';
+  //private apiUrl = 'https://twitterangular-4b448-default-rtdb.asia-southeast1.firebasedatabase.app/';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
@@ -37,9 +38,15 @@ export class AuthService {
 
   // Register a new user
   register(user: User): Observable<any> {
+    // Store the password separately for login verification
+    const userPassword = user.password;
+    
     // Create a copy of user without the password for storage
     const userToStore = { ...user };
-    delete userToStore.password;
+    
+    // In a real app, you would hash the password before storing
+    // For this demo, we'll store it to enable login verification
+    // In a production app, you'd use Firebase Authentication instead
     
     // Add default profile values
     userToStore.following = 0;
@@ -56,6 +63,8 @@ export class AuthService {
             ...userToStore,
             id: response.name
           };
+          // Remove password before storing in local state
+          delete newUser.password;
           this.setCurrentUser(newUser);
           return newUser;
         }),
@@ -82,20 +91,27 @@ export class AuthService {
           );
 
           if (!userId) {
-            throw new Error('User not found');
+            throw new Error('Invalid email or password');
           }
 
-          // In a real app, you would hash passwords and not store them directly
-          // For this demo, we're checking if the user exists with the given email
-          // In a production app, you'd use Firebase Authentication instead
+          const user = users[userId];
           
-          const user = {
-            ...users[userId],
+          // Check if the password matches
+          if (user.password !== password) {
+            throw new Error('Invalid email or password');
+          }
+          
+          // Create user object without password for client-side storage
+          const authenticatedUser = {
+            ...user,
             id: userId
           };
           
-          this.setCurrentUser(user);
-          return user;
+          // Remove password before storing in local state
+          delete authenticatedUser.password;
+          
+          this.setCurrentUser(authenticatedUser);
+          return authenticatedUser;
         }),
         catchError(error => {
           console.error('Login error:', error);
