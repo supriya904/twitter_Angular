@@ -26,7 +26,7 @@
   </div>
 
   <!-- User Profile -->
-  <div class="user-profile">
+  <div class="user-profile" (click)="toggleUserMenu()">
     <div class="avatar">
       <i class="fas fa-user-circle"></i>
     </div>
@@ -36,6 +36,14 @@
     </div>
     <div class="more-options">
       <i class="fas fa-ellipsis-h"></i>
+    </div>
+  </div>
+  
+  <!-- User Menu -->
+  <div class="user-menu" *ngIf="showUserMenu">
+    <div class="menu-item logout" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Logout</span>
     </div>
   </div>
 

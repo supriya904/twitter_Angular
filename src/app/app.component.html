@@ -1,5 +1,4 @@
-<router-outlet></router-outlet>
-<!-- Landing page -->
+<!-- Conditional rendering based on authentication status -->
 <ng-container *ngIf="!isLoggedIn">
   <!-- Show landing page when user is not logged in -->
   <app-landing-page></app-landing-page>
