@@ -28,11 +28,13 @@
   <!-- User Profile -->
   <div class="user-profile" (click)="toggleUserMenu()">
     <div class="avatar">
-      <i class="fas fa-user-circle"></i>
+      <div class="avatar-circle">
+        <span class="avatar-initial">{{ getInitial() }}</span>
+      </div>
     </div>
     <div class="user-info">
-      <div class="user-name">{{user.name}}</div>
-      <div class="user-handle">{{user.handle}}</div>
+      <div class="user-name">{{ user?.name || 'User' }}</div>
+      <div class="user-handle">{{ userHandle || '@user' }}</div>
     </div>
     <div class="more-options">
       <i class="fas fa-ellipsis-h"></i>
@@ -41,6 +43,10 @@
   
   <!-- User Menu -->
   <div class="user-menu" *ngIf="showUserMenu">
+    <div class="menu-item" (click)="navigateTo('/profile')">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
+    </div>
     <div class="menu-item logout" (click)="logout()">
       <i class="fas fa-sign-out-alt"></i>
       <span>Logout</span>

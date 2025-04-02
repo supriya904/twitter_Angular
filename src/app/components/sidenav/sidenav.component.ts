@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TweetDialogComponent } from '../tweet-dialog/tweet-dialog.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService, User } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav',
@@ -11,11 +12,9 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent {
-  user = {
-    name: 'Vodnala Supriya',
-    handle: '@supri_vodnala'
-  };
+export class SidenavComponent implements OnInit, OnDestroy {
+  user: User | null = null;
+  userHandle: string = '';
   
   navItems = [
     { icon: 'fa-home', label: 'Home', route: '/home' },
@@ -30,11 +29,29 @@ export class SidenavComponent {
 
   showTweetDialog = false;
   showUserMenu = false;
+  private userSubscription: Subscription | null = null;
 
   constructor(
     private router: Router,
     private authService: AuthService
   ) {}
+
+  ngOnInit(): void {
+    // Subscribe to user changes
+    this.userSubscription = this.authService.currentUser$.subscribe(user => {
+      this.user = user;
+      if (user) {
+        this.userHandle = this.authService.getUserHandle(user);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription when component is destroyed
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+  }
 
   navigateTo(route: string): void {
     this.router.navigate([route]);
@@ -57,5 +74,10 @@ export class SidenavComponent {
     // The app component will automatically show the landing page
     // since it's subscribed to the auth state changes
     this.showUserMenu = false;
+  }
+
+  // Helper method to get first letter of name for avatar
+  getInitial(): string {
+    return this.authService.getUserInitial(this.user);
   }
 }

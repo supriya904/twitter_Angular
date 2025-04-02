@@ -10,6 +10,13 @@ export interface User {
   password?: string;
   dateOfBirth: string;
   createdAt: string;
+  bio?: string;
+  location?: string;
+  website?: string;
+  profileImageUrl?: string;
+  bannerImageUrl?: string;
+  following?: number;
+  followers?: number;
 }
 
 @Injectable({
@@ -33,6 +40,13 @@ export class AuthService {
     // Create a copy of user without the password for storage
     const userToStore = { ...user };
     delete userToStore.password;
+    
+    // Add default profile values
+    userToStore.following = 0;
+    userToStore.followers = 0;
+    userToStore.bio = '';
+    userToStore.location = '';
+    userToStore.website = '';
 
     return this.http.post<any>(`${this.apiUrl}/users.json`, userToStore)
       .pipe(
@@ -99,6 +113,45 @@ export class AuthService {
   // Get current user
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  // Update user profile
+  updateUserProfile(userData: Partial<User>): Observable<User> {
+    const currentUser = this.getCurrentUser();
+    if (!currentUser || !currentUser.id) {
+      return throwError(() => new Error('No authenticated user found'));
+    }
+
+    const userId = currentUser.id;
+    const updatedUser = { ...currentUser, ...userData };
+    
+    // Remove sensitive data
+    const userToUpdate = { ...updatedUser };
+    delete userToUpdate.id;
+    delete userToUpdate.password;
+
+    return this.http.put<any>(`${this.apiUrl}/users/${userId}.json`, userToUpdate)
+      .pipe(
+        tap(() => {
+          this.setCurrentUser(updatedUser);
+        }),
+        map(() => updatedUser),
+        catchError(error => {
+          console.error('Profile update error:', error);
+          return throwError(() => new Error('Failed to update profile. Please try again.'));
+        })
+      );
+  }
+
+  // Generate a Twitter-like handle from the user's name
+  getUserHandle(user: User | null): string {
+    if (!user || !user.name) return '@user';
+    return '@' + user.name.replace(/\s+/g, '').toLowerCase();
+  }
+
+  // Get user's initial for avatar
+  getUserInitial(user: User | null): string {
+    return user?.name?.charAt(0) || 'U';
   }
 
   // Set current user and save to localStorage

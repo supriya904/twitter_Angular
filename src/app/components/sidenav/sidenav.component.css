@@ -133,6 +133,24 @@
   margin-right: 0;
 }
 
+/* Avatar Circle */
+.avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #1DA1F2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.avatar-initial {
+  text-transform: uppercase;
+}
+
 /* User Menu */
 .user-menu {
   position: absolute;
