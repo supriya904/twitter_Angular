@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  z-index: 1000;
+  z-index: 9999;
   padding-top: 50px;
 }
 
@@ -24,6 +24,8 @@
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10000;
 }
 
 .dialog-header {

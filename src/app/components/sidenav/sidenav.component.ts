@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { TweetDialogComponent } from '../tweet-dialog/tweet-dialog.component';
 import { AuthService, User } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [CommonModule, TweetDialogComponent],
+  imports: [CommonModule],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
@@ -27,7 +26,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
     { icon: 'fa-ellipsis-h', label: 'More', route: '/more' }
   ];
 
-  showTweetDialog = false;
   showUserMenu = false;
   private userSubscription: Subscription | null = null;
 
@@ -58,11 +56,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   openTweetDialog(): void {
-    this.showTweetDialog = true;
-  }
-
-  closeTweetDialog(): void {
-    this.showTweetDialog = false;
+    // Dispatch a custom event to notify the app component to open the tweet dialog
+    window.dispatchEvent(new CustomEvent('openTweetDialog'));
   }
   
   toggleUserMenu(): void {

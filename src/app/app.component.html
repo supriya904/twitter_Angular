@@ -8,3 +8,6 @@
   <!-- Show dashboard when user is logged in -->
   <app-dashboard></app-dashboard>
 </ng-container>
+
+<!-- Tweet Dialog - Rendered at the root level -->
+<app-tweet-dialog *ngIf="showTweetDialog" (closeEvent)="closeTweetDialog()"></app-tweet-dialog>
